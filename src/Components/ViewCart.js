@@ -14,7 +14,6 @@ const ViewCart = ({ handleDelete, handleClearCart }) => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/cart');
       const data = await response.json();
-      console.log('Cart Items Response:', data);
       if (response.status === 200) {
         setAddedItems(data.cartItems);
       } else {

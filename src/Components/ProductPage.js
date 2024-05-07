@@ -24,7 +24,6 @@ const Product = ({ products, onAddToCart }) => {
         throw new Error('Failed to add product to cart');
       }
       const data = await response.json();
-      console.log('Product added to cart:', data);
   
       setAddedItems(prevItems => [...prevItems, product]);
       onAddToCart();
