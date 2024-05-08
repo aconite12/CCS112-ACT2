@@ -15,6 +15,7 @@ const Product = ({ products, onAddToCart }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          product_id: product.id,
           productName: product.productName,
           price: product.price,
           productDescription: product.productDescription
@@ -24,13 +25,15 @@ const Product = ({ products, onAddToCart }) => {
         throw new Error('Failed to add product to cart');
       }
       const data = await response.json();
-  
-      setAddedItems(prevItems => [...prevItems, product]);
+      console.log(data);
+      const productWithId = { ...product, product_id: data.productId };
+      setAddedItems(prevItems => [...prevItems, productWithId]);
       onAddToCart();
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
-  }; 
+  };
+  
 
   return (
     <div className='Product'>
